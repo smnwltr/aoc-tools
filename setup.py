@@ -7,7 +7,6 @@ import requests
 import html2text
 from dotenv import load_dotenv
 
-
 load_dotenv()
 
 year = datetime.now().year
@@ -20,8 +19,8 @@ parser.add_argument("-i","--instructions", action="store_true", required=False, 
 parser.add_argument("-o","--open", action="store_true", required=False, help="Open the day_xx.py file in your default text editor.")
 parser.add_argument("-s","--second", action="store_true", required=False, help="Get the second puzzle instructions and appends it to the file.")
 
-
 args = parser.parse_args()
+
 
 def get_puzzle_instructions(day, part=1):
     headers = {"Cookie": "session={}".format(session_token)}
@@ -44,6 +43,7 @@ def get_puzzle_input(day):
     url = "https://adventofcode.com/{}/day/{}/input".format(year, day)
     r = requests.get(url, headers=headers)
     return r.text
+
 
 if __name__ == "__main__":
     if args.year:
@@ -107,6 +107,3 @@ if __name__ == "__main__":
 
         if args.open:
             os.system("open {}/day_{}/day_{}.py".format(year, args.day, args.day))
-
-# write a readme that explains the different functions and arguments
-
